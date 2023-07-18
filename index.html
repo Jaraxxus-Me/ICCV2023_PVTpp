@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Few-shot Detection w/o Fine-tuning for Autonomous Exploration">
-  <meta name="keywords" content="Few-shot detection, Online, Robotic exploration">
+        content="Simple Framework for End-to-End Predictive Visual Tracking">
+  <meta name="keywords" content="Visual Object Tracking, Online, Latency-Aware Perception">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AirDet</title>
 
@@ -66,6 +66,9 @@
           <a class="navbar-item" href="https://ieeexplore.ieee.org/document/9561564">
             ADTrack - ICRA 2021
           </a>
+          <a class="navbar-item" href="https://jaraxxus-me.github.io/ECCV2022_AirDet">
+            AirDet - ECCV 2022
+          </a>
           <a class="navbar-item" href="https://openaccess.thecvf.com/content/ICCV2021/papers/Cao_HiFT_Hierarchical_Feature_Transformer_for_Aerial_Tracking_ICCV_2021_paper.pdf">
             HiFT - ICCV 2021
           </a>
@@ -83,23 +86,29 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title"><img src="./static/images/drone.svg" width="120">AirDet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
-          <h1 class="title is-2 publication-title">Few-shot Detection w/o Fine-tuning for Autonomous Exploration</h1>
+          <h1 class="title is-2 publication-title">PVT++: A Simple Framework for End-to-End Predictive Visual Tracking</h1>
           <div class="column is-full_width">
-            <h2 class="title is-4">ECCV 2022</h2>
+            <h2 class="title is-4">ICCV 2023</h2>
           </div>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://jaraxxus-me.github.io/">Bowen Li</a><sup>1,2</sup>,</span>
+              <a href="https://jaraxxus-me.github.io/">Bowen Li</a><sup>1,*</sup>,</span>
             <span class="author-block">
-              <a href="https://utkarshsinha.com">Chen Wang</a><sup>1</sup>,</span>
+              <a href="https://huang-ziyuan.github.io/">Ziyuan Huang</a><sup>2,*</sup>,</span>
             <span class="author-block">
-              <a href="https://pranay-ar.github.io/">Pranay Reddy</a><sup>1,3</sup>,
+              <a href="https://jay-ye.github.io/">Junjie Ye</a><sup>3</sup>,
             </span>
             <span class="author-block">
-              <a href="https://seungchan-kim.github.io/">Seungchan Kim</a><sup>1</sup>,
+              <a href="https://www.linkedin.com/in/yiming-li-58b519173/">Yiming Li</a><sup>4</sup>,
             </span>
             <span class="author-block">
               <a href="http://theairlab.org/team/sebastian/">Sebastian Scherer</a><sup>1</sup>
+            </span>
+            <span class="author-block">
+              <a href="https://hangzhaomit.github.io/">Hang Zhao</a><sup>5</sup>
+            </span>
+            <span class="author-block">
+              <a href="https://www.researchgate.net/profile/Changhong-Fu">Changhong Fu</a><sup>6</sup>
             </span>
 
           </div>
@@ -108,17 +117,23 @@
             <span class="author-block"><sup>1</sup>Robotics Institute, Carnegie Mellon University</span>
           </div>
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>2</sup>School of Mechanical Engineering, Tongji University</span>
+            <span class="author-block"><sup>2</sup>Advanced Robotics Center, National University of Singapore</span>
           </div>
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>3</sup>Electronics and Communication Engineering, IIITDM Jabalpur</span>
+            <span class="author-block"><sup>3</sup>School of Mechanical Engineering, Tongji University</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>3</sup>School of Mechanical Engineering, New York University</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>3</sup>IIIS, Tsinghua University</span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2112.01740"
+                <a href="https://arxiv.org/pdf/2211.11629.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -127,7 +142,7 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2112.01740"
+                <a href="https://arxiv.org/abs/2211.11629"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -147,7 +162,7 @@
               </span> -->
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/Jaraxxus-Me/AirDet"
+                <a href="https://github.com/Jaraxxus-Me/PVT_pp"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -156,7 +171,7 @@
                   </a>
               </span>
               <!-- Dataset Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://github.com/Jaraxxus-Me/AirDet"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -164,8 +179,8 @@
                   </span>
                   <span>Data</span>
                 </a>
-              </span>
-              <span class="link-block">
+              </span> -->
+              <!-- <span class="link-block">
                 <a href="https://github.com/Jaraxxus-Me/AirDet_ROS"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -173,9 +188,9 @@
                   </span>
                   <span>ROS</span>
                 </a>
-              </span>
+              </span> -->
               <span class="link-block">
-                <a href="https://zhuanlan.zhihu.com/p/545249730"
+                <a href="https://zhuanlan.zhihu.com/p/643835478"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-blog"></i>
