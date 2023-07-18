@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Few-shot Detection w/o Fine-tuning for Autonomous Exploration">
+  <meta name="keywords" content="Few-shot detection, Online, Robotic exploration">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AirDet</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+  <link rel="icon" type="image/png" href="./static/images/airlab.png"> 
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/airlab.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://jaraxxus-me.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://ieeexplore.ieee.org/document/9561564">
+            ADTrack - ICRA 2021
+          </a>
+          <a class="navbar-item" href="https://openaccess.thecvf.com/content/ICCV2021/papers/Cao_HiFT_Hierarchical_Feature_Transformer_for_Aerial_Tracking_ICCV_2021_paper.pdf">
+            HiFT - ICCV 2021
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><img src="./static/images/drone.svg" width="120">AirDet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+          <h1 class="title is-2 publication-title">Few-shot Detection w/o Fine-tuning for Autonomous Exploration</h1>
+          <div class="column is-full_width">
+            <h2 class="title is-4">ECCV 2022</h2>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://jaraxxus-me.github.io/">Bowen Li</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://utkarshsinha.com">Chen Wang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://pranay-ar.github.io/">Pranay Reddy</a><sup>1,3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://seungchan-kim.github.io/">Seungchan Kim</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://theairlab.org/team/sebastian/">Sebastian Scherer</a><sup>1</sup>
+            </span>
+
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Robotics Institute, Carnegie Mellon University</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>2</sup>School of Mechanical Engineering, Tongji University</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>3</sup>Electronics and Communication Engineering, IIITDM Jabalpur</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2112.01740"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2112.01740"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Jaraxxus-Me/AirDet"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Jaraxxus-Me/AirDet"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/Jaraxxus-Me/AirDet_ROS"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-robot"></i>
+                  </span>
+                  <span>ROS</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://zhuanlan.zhihu.com/p/545249730"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-blog"></i>
+                  </span>
+                  <span>Blog</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop height="100%">
+        <source src="./static/images/SUBT_video.mp4"
+                type="video/mp4">
+      </video>
+      <!-- <img class="rounded" src="./media/nice-slam/teaser.png" > -->
+      <br><br><br>
+      <h2 class="subtitle has-text-centered">
+      Given 3-shot support images, <strong>AirDet</strong> can directly detect the novel objects <b>without</b> fine-tuning.
+    </h2>
+    <!-- <h2 class="subtitle has-text-centered">
+      (The <span style="color:#000000;">black</span> / <span style="color:#ff0000;">red</span> lines are the ground truth / predicted camera trajectory)
+    </h2> -->
+    <h2 class="is-size-6 has-text-centered">(The left are few-shot annotations online provided by user and right is the detection results)</h2>
+    
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+        <!-- Paper video. -->
+        <!-- <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Video</h2>
+            <div class="publication-video">
+              <iframe src="https://www.youtube.com/embed/V5hYTz5os0M?rel=0&amp;showinfo=0"
+                      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div> -->
+        <!--/ Paper video. -->
+      
+    <!-- <br> -->
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Few-shot object detection has attracted increasing attention and rapidly progressed in recent years. However, the requirement of an exhaustive offline fine-tuning stage in existing methods is time-consuming and significantly hinders their usage in online applications such as autonomous exploration of low-power robots.
+          </p>
+          <p>
+            We find that their major limitation is that the little but valuable information from a few support images is not fully exploited.
+          </p>
+          <p>
+            To solve this problem, we propose a brand new architecture, AirDet, and surprisingly find that, by learning <i>class-agnostic relation</i> with the support images in all modules, including cross-scale object proposal network, shots aggregation module, and localization network, AirDet without fine-tuning achieves comparable or even better results than many fine-tuned methods, reaching up to <b>30-40%</b> improvements.
+            We also present solid results of onboard tests on real-world exploration data from the DARPA Subterranean Challenge, which strongly validate the feasibility of AirDet in robotics.
+          </p>
+          <p>
+            To the best of our knowledge, AirDet is the first feasible few-shot detection method for autonomous exploration of low-power robots.
+            The code and pre-trained models are also released.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- <br> -->
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Contribution</h2>
+        <div class="content has-text-justified">
+          <li>
+            We propose the first feasible model, AirDet, for robotic exploration, which enables few-shot detection <b>w/o</b> fine-tuning.
+          </li>
+          <li>
+            We propose "<b>class-agnostic relation</b>", including spatial relation and channel relation, which are basic building blocks of AirDet.
+          </li>
+          <li>
+            Exhaustive experiments on COCO, Pascal VOC, LVIS datasets, and <b>DARPA SubT</b> tests validate the feasibility and superiority of AirDet.
+          </li>
+          <li>
+            We also provide <b>ROS wrapper</b> of AirDet for the robotics community.
+          </li>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full_width">
+        <hr>
+        <h2 class="title is-3">Method</h2>
+        <br>
+        <img src="static\images\main.svg" class="center"/>
+        <div class="content has-text-justified">
+          <br>  
+          <p>
+            The pipeline of the autonomous exploration task and the framework of <strong>AirDet</strong>. 
+          </p>
+          <p>
+            During exploration, a few prior raw images that potentially contain novel objects (helmet) are sent to a human user first. Provided with <em>online</em> annotated few-shot data, the robot explorer is able to detect those objects by observing its surrounding environment.
+          </p>
+          <p>
+            AirDet includes 4 modules, <em>i.e.</em>, the shared backbone, support-guided cross-scale (<em>SCS</em>) feature fusion module for region proposal, global-local relation (<em>GLR</em>) module for shots aggregation, and relation-based detection head, which are visualized by different colors.
+          </p>
+          </p>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    
+    <!-- Applications.-->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full_width">
+        <h2 class="title is-3">Qualitative&nbsp;&nbsp;Results</h2>
+      </div>
+    </div>
+    <p>
+      &nbsp
+    </p>
+    <h3 class="title is-4">3-shot Detection in SubT Challenge</h3>
+    <div class="column is-full_width">
+      <img src="static\images\subt.svg" class="center"/>
+      <div class="content has-text-justified">
+        <br>  
+        <p>
+          The provided support images and examples of detection results in the real-world tests. AirDet is robust to distinct object scales and different illumination conditions.
+        </p>
+        </p>
+      </div>
+    </div>
+    <p>
+      &nbsp
+    </p>
+    <p>
+      &nbsp
+    </p>
+    <h3 class="title is-4">Attention of Proposal Gneration</h3>
+    <div class="column is-full_width">
+      <img src="static\images\deep_rpn.svg" class="center"/>
+      <div class="content has-text-justified">
+        <br>  
+        <p>
+          Compared with A-RPN, AirDet can better <em>notice</em> and <em>concentrate</em> on and novel object region, which leads to its more effective region proposals.
+        </p>
+        </p>
+      </div>
+    </div>
+    <p>
+      &nbsp
+    </p>
+    <p>
+      &nbsp
+    </p>
+    <h3 class="title is-4">Attention of Detection Head</h3>
+    <div class="column is-full_width">
+      <img src="static\images\deep_head.svg" class="center"/>
+      <div class="content has-text-justified">
+        <br>  
+        <p>
+          With similar proposals in <span style="color:#ff0000;">red</span> boxes, AirDet can focus more precisely on the most representative part of the object, resulting in more accurate box regression and classification.
+        </p>
+        </p>
+      </div>
+    </div>
+   
+</div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{Li2022ECCV,
+      author    = {Li, Bowen and Wang, Chen and Reddy, Pranay and Kim, Seungchan and Scherer, Sebastian},
+      title     = {AirDet: Few-Shot Detection without Fine-tuning for Autonomous Exploration},
+      booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
+      year      = {2022}
+  }</code></pre>
+  </div>
+</section>
+
+
+<section class="section" id="Acknowledgements">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+    The work was done when Bowen Li and Pranay Reddy were interns at The Robotics Institute, CMU. The authors would like to thank all members of the Team Explorer for providing data collected from the DARPA Subterranean Challenge. Our code is built upon <a href="https://github.com/fanq15/FewX">FewX</a>, for which we sincerely express our gratitute to the authors.
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This webpage template is from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. 
+            We sincerely thank <a href="https://keunhong.com/">Keunhong Park</a> for developing and open-sourcing this template.
+          </p>
+        </div>
+      </div>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
