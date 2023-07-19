@@ -200,14 +200,13 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop height="100%">
-        <source src="./static/images/SUBT_video.mp4"
-                type="video/mp4">
-      </video>
+      <div style="text-align:center;">
+        <img src="static\images\teaser.png" style="width:75%; height:auto;">
+      </div>
       <!-- <img class="rounded" src="./media/nice-slam/teaser.png" > -->
-      <br><br><br>
+      <br>
       <h2 class="subtitle has-text-centered">
-      <strong>PVT++</strong> is motivated by onboard latency of visual trackers. By virtue of <b>end-to-end joint learning of motion and visual cues</b>, PVT++ works better than KFs.
+      <strong>PVT++</strong> is motivated by onboard latency of visual trackers. By virtue of <b>end-to-end joint learning of motion and visual cues</b>, PVT++ achieves <b>online</b> results that is comparable to <b>offline</b> setting!
     </h2>
     <!-- <h2 class="subtitle has-text-centered">
       (The <span style="color:#000000;">black</span> / <span style="color:#ff0000;">red</span> lines are the ground truth / predicted camera trajectory)
@@ -435,9 +434,10 @@
 </section>
 
 
-<section class="section" id="BibTeX">
+
+<section class="section" >
   <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
+    <h1 class="title">BibTeX</h1>
     <pre><code>@inproceedings{Li2023iccv,       
       author={Li, Bowen and Huang, Ziyuan and Ye, Junjie and Li, Yiming and Scherer, Sebastian and Zhao, Hang and Fu, Changhong},   
       booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)}, 
@@ -453,8 +453,9 @@
 
 <section class="section" id="Acknowledgements">
   <div class="container is-max-desktop content">
-    <h2 class="title">Acknowledgements</h2>
-    The work was done when Bowen Li and Pranay Reddy were interns at The Robotics Institute, CMU. The authors would like to thank all members of the Team Explorer for providing data collected from the DARPA Subterranean Challenge. Our code is built upon <a href="https://github.com/fanq15/FewX">FewX</a>, for which we sincerely express our gratitute to the authors.
+    <h1 class="title">Acknowledgements</h1>
+    The work was done when Bowen Li and Ziyuan Huang were visiting students in the MARS Lab at Shanghai Qizhi Institute.
+    The authors would like to express gratitude to the developers and authors of PySot and "Towards Streaming Perception".
   </div>
 </section>
 
