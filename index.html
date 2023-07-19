@@ -85,10 +85,10 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title"><img src="./static/images/clock.svg" width="80">PVT++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+          <h1 class="title is-1 publication-title"><img src="./static/images/clock1.svg" width="40">&nbspPVT++&nbsp;<img src="./static/images/clock2.svg" width="40">&nbsp;</h1>
           <h1 class="title is-2 publication-title">A Simple Framework for End-to-End Predictive Visual Tracking</h1>
           <div class="column is-full_width">
-            <h2 class="title is-4">ICCV 2023</h2>
+            <h2 class="title is-3">ICCV 2023</h2>
           </div>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
@@ -110,7 +110,13 @@
             <span class="author-block">
               <a href="https://www.researchgate.net/profile/Changhong-Fu">Changhong Fu</a><sup>3</sup>
             </span>
+          </div>
 
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Carnegie Mellon University</span>,<span class="author-block"><sup>2</sup>National University of Singapore</span>,<span class="author-block"><sup>3</sup>Tongji University</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>4</sup>New York University</span>, <span class="author-block"><sup>5</sup>Tsinghua University</span>
           </div>
 
           <div class="column has-text-centered">
@@ -233,19 +239,19 @@
         <div class="content has-text-justified">
           <p>
             Visual object tracking is essential to intelligent robots. 
-            Most existing approaches have ignored the online latency that can cause severe performance degradation during real-world processing.
+            Most existing approaches have ignored the <b>online latency</b> that can cause severe performance degradation during real-world processing.
             Especially for unmanned aerial vehicles (UAVs), where robust tracking is more challenging and onboard computation is limited, the latency issue can be fatal.
           </p>
           <p>
-            In this work, we present a simple framework for end-to-end latency-aware tracking, end-to-end predictive visual tracking (PVT++). 
+            In this work, we present a simple framework for <b>end-to-end latency-aware tracking</b>, end-to-end predictive visual tracking (PVT++). 
             Unlike existing solutions that naively append Kalman Filters after trackers, PVT++ can be jointly optimized, so that it takes not only motion information but can also leverage the rich visual knowledge in most pre-trained tracker models for robust prediction.
           </p>
           <p>
-            Besides, to bridge the training-evaluation domain gap, we propose a relative motion factor, empowering PVT++ to generalize to the challenging and complex UAV tracking scenes.
+            Besides, to bridge the training-evaluation domain gap, we propose a <b>relative motion factor</b>, empowering PVT++ to generalize to the challenging and complex UAV tracking scenes.
             These careful designs have made the small-capacity lightweight PVT++ a widely effective solution.
           </p>
           <p>
-            Additionally, this work presents an extended latency-aware evaluation benchmark for assessing an <i>any-speed</i> tracker in the online setting. 
+            Additionally, this work presents an <b>extended latency-aware evaluation benchmark</b> for assessing an <i>any-speed</i> tracker in the online setting. 
             Empirical results on a robotic platform from the aerial perspective show that PVT++ can achieve significant performance gain on various trackers and exhibit higher accuracy than prior solutions, largely mitigating the degradation brought by latency. 
           </p>
         </div>
@@ -264,7 +270,7 @@
         <h2 class="title is-3">Contribution</h2>
         <div class="content has-text-justified">
           <li>
-            We propose the first end-to-end general framework, PVT++, for latency-aware tracking, compensates for online latency by accurate motion prediction.
+            We propose the first end-to-end general framework, PVT++, for latency-aware tracking, compensating for online latency by accurate motion prediction.
           </li>
           <li>
             We propose "<b>relative motion factor</b>", bridging the training-evaluation domain gap.
@@ -293,11 +299,65 @@
         <hr>
         <h2 class="title is-3">Method</h2>
         <br>
-        <img src="static\images\method.svg" class="center"/>
-        <div class="content has-text-justified">
+        <div style="text-align:center;">
+          <img src="static\images\method.png" style="width:80%; height:auto;">
+        </div>
           <br>  
+          <h2 class="subtitle has-text-centered">
+            (a) Structure of PVT++, consisting of tracker and predictior.
+            (b) Extended latency-aware benchmark.
+          </h2>
+          <br>
+        <h3 class="title is-4">e-LAE</h3>
+        <div class="content has-text-justified">
+          <p>LAE sets two policies for online evaluation of trackers:
+            <li>
+              During inference, the tracker finds the <b>latest</b> frame to process when finishing the previous one.
+            </li>
+            <li>
+              During evaluation, the ground-truth is compared with the <b>latest</b> result from the tracker at the world time stampn.
+            </li>
+            However, this fall shorts when evaluating real-time trackers, since <b>the latency is always 1 frame</b>, <span
+            class="math inline"><em>ϕ</em>(<em>f</em>) ≡ <em>f</em> − 1</span>.
+          </p>
+          
           <p>
-            The general framework of PVT++ (a) and e-LAE (b). 
+            e-LAE sets permitted latency threshold <span class="math inline"><em>σ</em></span>, instead of hard requiring the <b>latest</b> result. 
+            By setting different thresholds <span class="math inline"><em>σ</em> ∈ [0, 1)</span>, we get a curve for the online results. 
+            e-LAE finally takes the aera under curve for the final comparing results.
+            Since different real-time trackers have distinct latency, the thresholds can distinguish between them.
+          </p>
+          <p>
+            We have conducted exhaustive experiments using robot platform and e-LAE here:
+          </p>
+          <img src="static\images\elae.svg" class="center"/>
+        </div>
+
+        <h3 class="title is-4">PVT++</h3>
+        <div class="content has-text-justified">
+          <p>
+            PVT++ consists of a tracker module and predictor module. The critical designs are:
+            <li>
+              <b>Relative motion factor</b>: the training objective needs to be carefully designed to enable a generalizable framework.
+            </li>
+            <div style="text-align:center;">
+              <img src="static\images\eqn4.png" style="width:70%; height:auto;">
+            </div>
+            here our predictor is trying to output "adjustment" on "average speed motion" assumption.
+          </p>
+          <p>
+            <li>
+              <b>Lightweight structure</b>: The predictor module is carefully designed as below to avoid extra latency:
+            </li>
+            <br>
+            <div style="text-align:center;">
+              <img src="static\images\pred.png" style="width:70%; height:auto;">
+            </div>
+          </p>
+          <p>
+            <li>
+            <b>Optimizing techniques</b>: We develop joint training and auxiliary branch as techniques to utilize <b>pre-existing</b> tracker visual features.
+            </li>
           </p>
         </div>
       </div>
@@ -314,17 +374,31 @@
     <p>
       &nbsp
     </p>
-    <h3 class="title is-4">Effect on Traditional Trackers</h3>
-    <div class="column is-full_width">
-      <img src="static\images\subt.svg" class="center"/>
-      <div class="content has-text-justified">
-        <br>  
-        <p>
-          The provided support images and examples of detection results in the real-world tests. AirDet is robust to distinct object scales and different illumination conditions.
-        </p>
-        </p>
-      </div>
+    <h3 class="title is-4">Effect on Traditional Base Trackers</h3>
+    <div style="text-align:center;">
+      <img src="static\images\cap_baset.png" style="width:70%; height:auto;">
     </div>
+   <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+      <video id="teaser1" autoplay muted loop style="flex: 50%; max-width: 50%;">
+          <source src="./static/images/baset_1.mp4" type="video/mp4">
+      </video>
+
+      <video id="teaser2" autoplay muted loop style="flex: 50%; max-width: 50%;">
+          <source src="./static/images/baset_2.mp4" type="video/mp4">
+      </video>
+
+      <video id="teaser3" autoplay muted loop style="flex: 50%; max-width: 50%;">
+          <source src="./static/images/baset_3.mp4" type="video/mp4">
+      </video>
+
+      <video id="teaser4" autoplay muted loop style="flex: 50%; max-width: 50%;">
+          <source src="./static/images/baset_4.mp4" type="video/mp4">
+      </video>
+  </div>
+  <h2 class="subtitle has-text-centered">
+    The base trackers are easy to lose the target object due to latency. Powered by PVT++, the predictive trackers is more accurate.
+  </h2>
+
     <p>
       &nbsp
     </p>
@@ -332,16 +406,30 @@
       &nbsp
     </p>
     <h3 class="title is-4">Comparison with KF</h3>
-    <div class="column is-full_width">
-      <img src="static\images\deep_rpn.svg" class="center"/>
-      <div class="content has-text-justified">
-        <br>  
-        <p>
-          Compared with A-RPN, AirDet can better <em>notice</em> and <em>concentrate</em> on and novel object region, which leads to its more effective region proposals.
-        </p>
-        </p>
-      </div>
+    <div style="text-align:center;">
+      <img src="static\images\cap_kf.png" style="width:80%; height:auto;">
     </div>
+   <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+      <video id="teaser1" autoplay muted loop style="flex: 50%; max-width: 50%;">
+          <source src="./static/images/kft_1.mp4" type="video/mp4">
+      </video>
+
+      <video id="teaser2" autoplay muted loop style="flex: 50%; max-width: 50%;">
+          <source src="./static/images/kft_2.mp4" type="video/mp4">
+      </video>
+
+      <video id="teaser3" autoplay muted loop style="flex: 50%; max-width: 50%;">
+          <source src="./static/images/kft_3.mp4" type="video/mp4">
+      </video>
+
+      <video id="teaser4" autoplay muted loop style="flex: 50%; max-width: 50%;">
+          <source src="./static/images/kft_4.mp4" type="video/mp4">
+      </video>
+  </div>
+
+  <h2 class="subtitle has-text-centered">
+    Kalman filters fall short in in-plane-rotation and view-point change, thus causing the predictive trackers to fail. While our PVT++ is more robust under these challenges due to the incoorperation of visual cues.
+  </h2>
    
 </div>
 </section>
